@@ -1,15 +1,10 @@
 var octopus = {
     register : function(name, password, role){
-        
-    const fs = require('fs');
-  
-    // Data which will write in a file. 
-    data = ""+name+"\n"+password+"\n";
-  
-    // Write data in 'Output.txt' . 
-    fs.writeFile(role+'.txt', data, (err) => { 
-      
-        // In case of a error throw err. 
-        if (err) throw err; 
-    }) }
+        var txt = new ActiveXObject("Scripting.FileSystemObject");
+        var s = txt.CreateTextFile("D:/11.txt", true);
+        s.WriteLine(''+name);
+        s.WriteLine(''+password);
+        s.WriteLine(''+role);
+        s.Close();
+    }
 }

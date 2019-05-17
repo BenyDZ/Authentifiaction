@@ -1,20 +1,19 @@
 var OCTOPUS={
-        readTextFile: function(D:/PANESS IIHT/COURS/GROUP WORK/Projet 2/Authentifiaction/Save/Utilisateur.txt)
-    {
-        var rawFile = new XMLHttpRequest();
-        rawFile.open("GET", file, false);
-        rawFile.onreadystatechange = function ()
-        {
-            if(rawFile.readyState === 4)
-            {
-                if(rawFile.status === 200 || rawFile.status == 0)
-                {
-                    var allText = rawFile.responseText;
-                    alert(allText);
-                }
-            }
+    readJSON :function(path) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', path, true);
+        xhr.responseType = 'blob';
+        xhr.onload = function(e) { 
+            if (this.status == 200) {
+                var file = new File([this.response], 'temp');
+                var fileReader = new FileReader();
+                fileReader.addEventListener('load', function(){
+                   //do stuff with fileReader.result
+                });
+                fileReader.readAsText(file);
+            } 
         }
-        rawFile.send(null);
+        xhr.send();
     }
 }
-OCTOPUS.readTextFile();
+OCTOPUS.readJSON();
